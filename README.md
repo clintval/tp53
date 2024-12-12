@@ -1,6 +1,6 @@
 # tp53
 
-[![CI](https://github.com/clintval/tp53/actions/workflows/python_package.yml/badge.svg?branch=main)](https://github.com/clintval/tp53/actions/workflows/python_package.yml?query=branch%3Amain)
+[![CI](https://github.com/clintval/tp53/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/clintval/tp53/actions/workflows/tests.yml?query=branch%3Amain)
 [![Python Versions](https://img.shields.io/badge/python-3.11_|_3.12_|_3.13-blue)](https://github.com/clintval/tp53)
 [![MyPy Checked](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
