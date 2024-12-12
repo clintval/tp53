@@ -1,9 +1,15 @@
-name: Code checks
+name: unit tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "!**"
+  workflow_call:
 
 env:
-  POETRY_VERSION: 1.8.2
+  POETRY_VERSION: 1.8
 
 jobs:
   Tests:
@@ -35,7 +41,7 @@ jobs:
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
-  
+
       - name: Ensure cache is healthy
         if: steps.cache.outputs.cache-hit == 'true'
         shell: bash
@@ -49,4 +55,3 @@ jobs:
 
       - name: Test the library
         run: poetry task check-all
-
