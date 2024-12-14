@@ -35,19 +35,21 @@ Seshat also utilizes custom JavaScript in their form processing, so a lightweigh
 
 ###### VCF Input Requirements
 
-Seshat will not let the user know why a VCF fails to annotate, but it has been observed that Seshat can fail to parse some of VarDictJava's structural variants (SVs) as valid variant records.
+Seshat will not let the user know why a VCF fails to annotate, but it has been observed that Seshat can fail to parse some of [VarDictJava](https://github.com/AstraZeneca-NGS/VarDictJava)'s structural variants (SVs) as valid variant records.
 One solution that has worked in the past is to remove SVs.
 The following command will exclude all variants with a non-empty SVTYPE INFO key:
 
-  bcftools view in.vcf --exclude 'SVTYPE!="."' > out.noSV.vcf
+```bash
+bcftools view in.vcf --exclude 'SVTYPE!="."' > out.noSV.vcf
+```
 
 ###### Automation
 
 There are no terms and conditions posted on the Seshat annotation server's website, and there is no server-side `robots.txt` rule set.
 In lieu of usage terms, we strongly encourage all users of this script to respect the Seshat resource by adhering to the following best practice:
 
-  - Minimize Load: Limit the rate of requests to the server
-  - Minimize Connections: Limit the number of concurrent requests
+- Minimize Load: Limit the rate of requests to the server
+- Minimize Connections: Limit the number of concurrent requests
 
 If you need to batch process dozens, or hundreds, of VCF callsets, you may consider improving this underlying Python script to randomize the user agent and IP address of your headless browser session to prevent from being labelled as a bot.
 
@@ -61,7 +63,7 @@ brew install --cask google-chrome
 
 Distributions of MacOS may require you to authenticate the Chrome driver:
 
-  - https://stackoverflow.com/a/60362134
+- https://stackoverflow.com/a/60362134
 
 ###### References
 
