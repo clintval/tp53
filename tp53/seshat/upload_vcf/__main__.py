@@ -101,7 +101,7 @@ if __name__ == "__main__":
         help="The Seshat TP53 web server URL.\n(default: http://vps338341.ovh.net/batch_analysis)",
     )
     _ = parser.add_argument(
-        "--wait_for",
+        "--wait-for",
         type=int,
         default=5,
         help="Seconds to wait for upload to occur before failure.\n(default: 5)",
