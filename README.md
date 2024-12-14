@@ -40,7 +40,7 @@ One solution that has worked in the past is to remove SVs.
 The following command will exclude all variants with a non-empty SVTYPE INFO key:
 
 ```bash
-bcftools view in.vcf --exclude 'SVTYPE!="."' > out.noSV.vcf
+❯ bcftools view in.vcf --exclude 'SVTYPE!="."' > out.noSV.vcf
 ```
 
 ###### Automation
@@ -58,7 +58,7 @@ If you need to batch process dozens, or hundreds, of VCF callsets, you may consi
 This script relies on Google Chrome:
 
 ```console
-brew install --cask google-chrome
+❯ brew install --cask google-chrome
 ```
 
 Distributions of MacOS may require you to authenticate the Chrome driver:
