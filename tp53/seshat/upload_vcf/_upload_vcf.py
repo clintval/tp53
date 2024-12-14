@@ -27,13 +27,13 @@ class HumanGenomeAssembly(StrEnum):
     """Enumerations of the Seshat upload supported human genome assembly."""
 
     hg18 = auto()
-    """The human genome assembly GRCh37 (hg18)."""
+    """The human genome assembly NCBI36 (hg18)."""
 
     hg19 = auto()
     """The human genome assembly GRCh37 (hg19)."""
 
     hg38 = auto()
-    """The human genome assembly GRCh37 (hg19)."""
+    """The human genome assembly GRCh38 (hg38)."""
 
 
 def upload_status(driver: RemoteWebDriver) -> str:
