@@ -18,7 +18,7 @@ The package can be installed with `pip`:
 pip install tp53
 ```
 
-## Upload a VCF to the Seshat TP54 Annotation Server
+## Upload a VCF to the Seshat TP53 Annotation Server
 
 Upload a VCF to the [Seshat TP53 annotation server](http://vps338341.ovh.net/) using a headless browser.
 
