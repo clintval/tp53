@@ -61,7 +61,7 @@ This script relies on Google Chrome:
 ❯ brew install --cask google-chrome
 ```
 
-Distributions of MacOS [may require you to authenticate the Chrome driver](https://stackoverflow.com/a/60362134).
+Distributions of MacOS may require you to authenticate the Chrome driver ([link](https://stackoverflow.com/a/60362134)).
 
 ###### References
 
