@@ -183,7 +183,7 @@ If Seshat fails to annotate the VCF file but still emails the user a response, t
 
 ## Development and Testing
 
-See the [contributing guide](./CONTRIBUTING.md) for more information.
+See the [contributing guide](https://github.com/clintval/tp53/blob/main/CONTRIBUTING.md) for more information.
 
 ## References
 
