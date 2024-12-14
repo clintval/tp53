@@ -101,8 +101,9 @@ if __name__ == "__main__":
     )
     _ = parser.add_argument(
         "--wait_for",
-        help="Seconds to wait for upload to occur before failure.\n(default: 5)",
+        type=int,
         default=5,
+        help="Seconds to wait for upload to occur before failure.\n(default: 5)",
     )
     args = parser.parse_args(cli_args)
 
