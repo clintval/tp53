@@ -1,18 +1,20 @@
+import logging
+import time
 from datetime import datetime
 from datetime import timedelta
 from enum import StrEnum
 from enum import auto
 from logging import Logger
-from logging import getLogger
 from pathlib import Path
 
+from chromedriver_py import binary_path
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver as RemoteWebDriver
 
-from ._exceptions import SeshatError
+from .._exceptions import SeshatError
 
-logger: Logger = getLogger("tp53.seshat")
+logger: Logger = logging.getLogger("tp53.seshat.upload_vcf")
 
 DEFAULT_REMOTE_URL: str = "http://vps338341.ovh.net/batch_analysis"
 """The default remote Seshat batch analysis URL."""
@@ -34,7 +36,7 @@ class HumanGenomeAssembly(StrEnum):
     """The human genome assembly GRCh37 (hg19)."""
 
 
-def seshat_upload_status(driver: RemoteWebDriver) -> str:
+def upload_status(driver: RemoteWebDriver) -> str:
     """Query the file uploading status and return its text representation."""
     modal = driver.find_element(By.XPATH, '//*[@id="uploading-status-text"]')
     inner = modal.get_attribute("innerText")
@@ -55,16 +57,18 @@ def upload_vcf(
 
     Args:
         vcf: The path to the VCF to upload.
-        email: The email address to receive Seshat TP53 variant annotations.
+        email: The email address to receive annotated variants at.
         assembly: The human genome assembly of the VCF.
         url: The Seshat TP53 web server URL.
-        wait_for: The total amount of time in seconds to wait for the upload occur before failure.
+        wait_for: Seconds to wait for upload to occur before failure.
     """
     vcf = str(Path(vcf).expanduser().absolute())
 
+    service = webdriver.ChromeService(executable_path=binary_path)
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
-    driver = webdriver.Chrome(options=options)
+
+    driver = webdriver.Chrome(service=service, options=options)
 
     driver.get(url)
     driver.find_element(By.XPATH, f'//select[@id="reference"]/option[@value="{assembly}"]').click()
@@ -75,8 +79,9 @@ def upload_vcf(
 
     status: str = ""
     while (SUCCESS not in status) and datetime.now() < upload_start + timedelta(seconds=wait_for):
-        status = seshat_upload_status(driver)
+        status = upload_status(driver)
         logger.info(status)
+        time.sleep(0.1)
 
     driver.quit()
 
