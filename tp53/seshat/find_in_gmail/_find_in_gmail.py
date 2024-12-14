@@ -22,7 +22,7 @@ from googleapiclient.discovery import build as build_google_client
 
 from .._exceptions import SeshatError
 
-logger: Logger = getLogger("tp53.seshat")
+logger: Logger = getLogger("tp53.seshat.find_in_gmail")
 
 DEFAULT_CACHE_PATH: Path = Path("~/.tp53/seshat/seshat-gmail-find-token.pickle")
 """The default Gmail OAuth cache file path."""
@@ -104,7 +104,7 @@ class TextPart(Part):
     ) -> None:
         super().__init__(mime_type, body, filename, headers, part_id)
         assert mime_type == "text/plain"
-        self.text = urlsafe_b64decode(cast(str, self.body["data"])).decode("UTF-8")
+        self.text = urlsafe_b64decode(cast(str, self.body["data"])).decode("iso-8859-1")
 
 
 class Attachment(Part):
@@ -290,7 +290,7 @@ class Gmail:
 
     def data_from_attachment(
         self, message_id: str, attachment: Attachment, user_id: str = USER_ID
-    ) -> str:
+    ) -> bytes:
         """Fetch an attachment on a message from Gmail for the given user."""
         data: str = cast(
             str,
@@ -304,13 +304,13 @@ class Gmail:
                 .get("data"),
             ),
         )
-        return urlsafe_b64decode(data).decode()
+        return urlsafe_b64decode(data)
 
 
 def unpack_seshat_attachment(
     infile: Path,
     output: Path,
-    attachment: str,
+    attachment: bytes,
 ) -> None:
     """
     Unpack Seshat annotations for a VCF file into a directory structure.
@@ -318,7 +318,7 @@ def unpack_seshat_attachment(
     Args:
         infile: The path to the input VCF file.
         output: The output path prefix for writing the annotations files.
-        attachment: The attachment in a single string.
+        attachment: The attachment in a single bytestring.
 
     """
     infile_canonical = strip_gzipped_extension(infile)
@@ -328,7 +328,7 @@ def unpack_seshat_attachment(
 
     logger.info(f"Writing attachment to ZIP archive: {archive}")
     with archive.open("wb") as handle:
-        handle.write(attachment.encode())
+        handle.write(attachment)
     logger.info(f"Extracting ZIP archive: {archive}")
     with ZipFile(archive, "r") as handle:
         handle.extractall(output.parent)
