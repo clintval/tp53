@@ -19,6 +19,7 @@ from google.auth.transport.requests import Request as AuthTransportRequest
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build as build_google_client
+from typing_extensions import override
 
 from .._exceptions import SeshatError
 
@@ -57,6 +58,7 @@ class Part:
         self.headers = headers
         self.part_id = part_id
 
+    @override
     def __repr__(self) -> str:
         return (
             f"{self.__class__.__qualname__}("
@@ -146,6 +148,7 @@ class Message:
                 parts.append(part)
         return parts
 
+    @override
     def __repr__(self) -> str:
         return f"<{self.__class__.__qualname__}: {repr(self.snippet)}>"
 
@@ -255,8 +258,8 @@ class Gmail:
                 )
                 .execute()
             )
-            messages = cast(list[dict[str, str]], response.get("messages"))
-            if messages is not None:
+            messages = response.get("messages")
+            if messages is not None and isinstance(messages, list):
                 for message in messages:
                     yield message
 
@@ -328,7 +331,7 @@ def unpack_seshat_attachment(
 
     logger.info(f"Writing attachment to ZIP archive: {archive}")
     with archive.open("wb") as handle:
-        handle.write(attachment)
+        _ = handle.write(attachment)
     logger.info(f"Extracting ZIP archive: {archive}")
     with ZipFile(archive, "r") as handle:
         handle.extractall(output.parent)
@@ -338,7 +341,7 @@ def unpack_seshat_attachment(
             renamed = full_annotation_tsv.with_name(
                 output.name + ".seshat." + full_annotation_tsv.name
             )
-            full_annotation_tsv.rename(renamed)
+            _ = full_annotation_tsv.rename(renamed)
             logger.info(f"Output file renamed to: {renamed}")
 
 

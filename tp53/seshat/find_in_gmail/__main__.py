@@ -1,4 +1,4 @@
-"""
+r"""
 Download Seshat VCF annotations by awaiting a server-generated email.
 
 This tool is used to programmatically wait for, and retrieve, a batch results
