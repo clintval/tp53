@@ -48,8 +48,8 @@ The following command will exclude all variants with a non-empty SVTYPE INFO key
 There are no terms and conditions posted on the Seshat annotation server's website, and there is no server-side `robots.txt` rule set.
 In lieu of usage terms, we strongly encourage all users of this script to respect the Seshat resource by adhering to the following best practice:
 
-- Minimize Load: Limit the rate of requests to the server
-- Minimize Connections: Limit the number of concurrent requests
+- **Minimize Load**: Limit the rate of requests to the server
+- **Minimize Connections**: Limit the number of concurrent requests
 
 If you need to batch process dozens, or hundreds, of VCF callsets, you may consider improving this underlying Python script to randomize the user agent and IP address of your headless browser session to prevent from being labelled as a bot.
 
