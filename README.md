@@ -26,8 +26,6 @@ Upload a VCF to the [Seshat TP53 annotation server](http://vps338341.ovh.net/) u
 ❯ python -m tp53.seshat.upload_vcf \
     --input "input.vcf" \
     --email "example@gmail.com"
-INFO:tp53.seshat.upload_vcf:Uploading 0%...
-INFO:tp53.seshat.upload_vcf:Upload complete!
 ```
 
 This tool is used to programmatically configure and upload batch variants in VCF format to the Seshat annotation server.
