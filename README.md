@@ -33,7 +33,7 @@ The tool works by building a headless Chrome browser instance and then interacti
 Unfortunately, Seshat does not provide a native programmatic API and one could not be reverse engineered.
 Seshat also utilizes custom JavaScript in their form processing, so a lightweight approach of simply interacting with the HTML form elements was also not possible.
 
-##### VCF Input Requirements
+###### VCF Input Requirements
 
 Seshat will not let the user know why a VCF fails to annotate, but it has been observed that Seshat can fail to parse some of VarDictJava's structural variants (SVs) as valid variant records.
 One solution that has worked in the past is to remove SVs.
@@ -41,7 +41,7 @@ The following command will exclude all variants with a non-empty SVTYPE INFO key
 
   bcftools view in.vcf --exclude 'SVTYPE!="."' > out.noSV.vcf
 
-##### Automation
+###### Automation
 
 There are no terms and conditions posted on the Seshat annotation server's website, and there is no server-side `robots.txt` rule set.
 In lieu of usage terms, we strongly encourage all users of this script to respect the Seshat resource by adhering to the following best practice:
@@ -51,7 +51,7 @@ In lieu of usage terms, we strongly encourage all users of this script to respec
 
 If you need to batch process dozens, or hundreds, of VCF callsets, you may consider improving this underlying Python script to randomize the user agent and IP address of your headless browser session to prevent from being labelled as a bot.
 
-##### Environment Setup
+###### Environment Setup
 
 This script relies on Google Chrome:
 
@@ -63,7 +63,7 @@ Distributions of MacOS may require you to authenticate the Chrome driver:
 
   - https://stackoverflow.com/a/60362134
 
-##### References
+###### References
 
 > Soussi, Thierry, et al. “Recommendations for Analyzing and Reporting TP53
 > Gene Variants in the High-Throughput Sequencing Era.” Human Mutation,
