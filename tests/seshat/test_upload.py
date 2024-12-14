@@ -1,4 +1,4 @@
-from tp53.seshat import HumanGenomeAssembly
+from tp53.seshat.upload_vcf import HumanGenomeAssembly
 
 
 def test_human_genome_assembly() -> None:
