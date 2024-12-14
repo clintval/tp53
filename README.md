@@ -160,7 +160,7 @@ If the cached token is missing, or becomes stale, then you will need to provide 
 
 A typical Google developer's OAuth file is of the format:
 
-```console
+```json
 {
 "installed": {
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
