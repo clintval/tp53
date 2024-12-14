@@ -19,10 +19,11 @@ from google.auth.transport.requests import Request as AuthTransportRequest
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build as build_google_client
+from typing_extensions import override
 
 from .._exceptions import SeshatError
 
-logger: Logger = getLogger("tp53.seshat")
+logger: Logger = getLogger("tp53.seshat.find_in_gmail")
 
 DEFAULT_CACHE_PATH: Path = Path("~/.tp53/seshat/seshat-gmail-find-token.pickle")
 """The default Gmail OAuth cache file path."""
@@ -57,6 +58,7 @@ class Part:
         self.headers = headers
         self.part_id = part_id
 
+    @override
     def __repr__(self) -> str:
         return (
             f"{self.__class__.__qualname__}("
@@ -104,7 +106,7 @@ class TextPart(Part):
     ) -> None:
         super().__init__(mime_type, body, filename, headers, part_id)
         assert mime_type == "text/plain"
-        self.text = urlsafe_b64decode(cast(str, self.body["data"])).decode("UTF-8")
+        self.text = urlsafe_b64decode(cast(str, self.body["data"])).decode("iso-8859-1")
 
 
 class Attachment(Part):
@@ -146,6 +148,7 @@ class Message:
                 parts.append(part)
         return parts
 
+    @override
     def __repr__(self) -> str:
         return f"<{self.__class__.__qualname__}: {repr(self.snippet)}>"
 
@@ -255,8 +258,8 @@ class Gmail:
                 )
                 .execute()
             )
-            messages = cast(list[dict[str, str]], response.get("messages"))
-            if messages is not None:
+            messages = response.get("messages")
+            if messages is not None and isinstance(messages, list):
                 for message in messages:
                     yield message
 
@@ -290,7 +293,7 @@ class Gmail:
 
     def data_from_attachment(
         self, message_id: str, attachment: Attachment, user_id: str = USER_ID
-    ) -> str:
+    ) -> bytes:
         """Fetch an attachment on a message from Gmail for the given user."""
         data: str = cast(
             str,
@@ -304,13 +307,13 @@ class Gmail:
                 .get("data"),
             ),
         )
-        return urlsafe_b64decode(data).decode()
+        return urlsafe_b64decode(data)
 
 
 def unpack_seshat_attachment(
     infile: Path,
     output: Path,
-    attachment: str,
+    attachment: bytes,
 ) -> None:
     """
     Unpack Seshat annotations for a VCF file into a directory structure.
@@ -318,7 +321,7 @@ def unpack_seshat_attachment(
     Args:
         infile: The path to the input VCF file.
         output: The output path prefix for writing the annotations files.
-        attachment: The attachment in a single string.
+        attachment: The attachment in a single bytestring.
 
     """
     infile_canonical = strip_gzipped_extension(infile)
@@ -328,7 +331,7 @@ def unpack_seshat_attachment(
 
     logger.info(f"Writing attachment to ZIP archive: {archive}")
     with archive.open("wb") as handle:
-        handle.write(attachment.encode())
+        _ = handle.write(attachment)
     logger.info(f"Extracting ZIP archive: {archive}")
     with ZipFile(archive, "r") as handle:
         handle.extractall(output.parent)
@@ -338,7 +341,7 @@ def unpack_seshat_attachment(
             renamed = full_annotation_tsv.with_name(
                 output.name + ".seshat." + full_annotation_tsv.name
             )
-            full_annotation_tsv.rename(renamed)
+            _ = full_annotation_tsv.rename(renamed)
             logger.info(f"Output file renamed to: {renamed}")
 
 

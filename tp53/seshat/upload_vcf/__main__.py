@@ -69,6 +69,7 @@ if __name__ == "__main__":
     cli_args = sys.argv[1:]
 
     parser = argparse.ArgumentParser(
+        prog="upload_vcf",
         description=__doc__,
         add_help=True,
         formatter_class=formatter,
