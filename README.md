@@ -63,10 +63,10 @@ This script relies on Google Chrome:
 
 Distributions of MacOS may require you to authenticate the Chrome driver ([link](https://stackoverflow.com/a/60362134)).
 
-###### References
-
-- [Soussi, Thierry, et al. “Recommendations for Analyzing and Reporting TP53 Gene Variants in the High-Throughput Sequencing Era.” Human Mutation, vol. 35, no. 6, 2014, pp. 766–778., doi:10.1002/humu.22561](https://doi.org/10.1002/humu.22561)
-
 ## Development and Testing
 
 See the [contributing guide](./CONTRIBUTING.md) for more information.
+
+## References
+
+- [Soussi, Thierry, et al. “Recommendations for Analyzing and Reporting TP53 Gene Variants in the High-Throughput Sequencing Era.” Human Mutation, vol. 35, no. 6, 2014, pp. 766–778., doi:10.1002/humu.22561](https://doi.org/10.1002/humu.22561)
