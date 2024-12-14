@@ -20,12 +20,12 @@ pip install tp53
 
 ### Uploading a VCF to the Seshat Server
 
-Upload a VCF to the Seshat TP53 annotation server using a headless browser.
+Upload a VCF to the [Seshat TP53 annotation server](http://vps338341.ovh.net/) using a headless browser.
 
 ```bash
 ❯ python -m tp53.seshat.upload_vcf \
-      --input "input.vcf" \
-      --email "example@gmail.com"
+    --input "input.vcf" \
+    --email "example@gmail.com"
 ```
 
 This tool is used to programmatically configure and upload batch variants in VCF format to the Seshat annotation server.
