@@ -10,9 +10,6 @@ env:
 jobs:
   on-main-branch-check:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: python
     outputs:
       on_main: ${{ steps.contains_tag.outputs.retval }}
     steps:
@@ -88,7 +85,7 @@ jobs:
         uses: orhun/git-cliff-action@v3
         id: git-cliff
         with:
-          config: ./python/pyproject.toml
+          config: pyproject.toml
           args: --latest --verbose
         env:
           GITHUB_REPO: ${{ github.repository }}
