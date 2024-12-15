@@ -36,13 +36,13 @@ tests-mypy = ["mypy (>=1.11.1)", "pytest-mypy-plugins"]
 
 [[package]]
 name = "basedpyright"
-version = "1.22.1"
+version = "1.23.0"
 description = "static type checking for Python (but based)"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "basedpyright-1.22.1-py3-none-any.whl", hash = "sha256:b25597757400ec082b1099eb99f0fc74857ff4dcd7caa198bf1e236d17214ebf"},
-    {file = "basedpyright-1.22.1.tar.gz", hash = "sha256:f7a2d0e49c7d375ce9e02a7c235536e824833c9df89c2ca7e605ab1a2995808f"},
+    {file = "basedpyright-1.23.0-py3-none-any.whl", hash = "sha256:b5610028c25034e94edc2e0d541860bc8d14f39697f274f2c8b2bbd05aab1f07"},
+    {file = "basedpyright-1.23.0.tar.gz", hash = "sha256:157021460eadb534fd1f32f9d5cfcd728c2e2d71500548f163e22789892567bd"},
 ]
 
 [package.dependencies]
@@ -82,13 +82,13 @@ files = [
 
 [[package]]
 name = "certifi"
-version = "2024.8.30"
+version = "2024.12.14"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "certifi-2024.8.30-py3-none-any.whl", hash = "sha256:922820b53db7a7257ffbda3f597266d435245903d80737e34f8a45ff3e3230d8"},
-    {file = "certifi-2024.8.30.tar.gz", hash = "sha256:bec941d2aa8195e248a60b31ff9f0558284cf01a52591ceda73ea9afffd69fd9"},
+    {file = "certifi-2024.12.14-py3-none-any.whl", hash = "sha256:1275f7a45be9464efc1173084eaa30f866fe2e47d389406136d332ed4967ec56"},
+    {file = "certifi-2024.12.14.tar.gz", hash = "sha256:b650d30f370c2b724812bee08008be0c4163b163ddaec3f2546c1caf65f191db"},
 ]
 
 [[package]]
@@ -285,14 +285,13 @@ files = [
 ]
 
 [[package]]
-name = "chromedriver-py"
-version = "131.0.6778.108"
-description = "chromedriver binaries for all platforms"
+name = "chromedriver-binary"
+version = "133.0.6896.0.0"
+description = "Installer for chromedriver."
 optional = false
 python-versions = "*"
 files = [
-    {file = "chromedriver_py-131.0.6778.108-py3-none-any.whl", hash = "sha256:c2e9b8231f300c50e27019ec0a89dc3a5f79f635d213692bc0d61ecfe9630354"},
-    {file = "chromedriver_py-131.0.6778.108.tar.gz", hash = "sha256:cffdcd722eac1a911e641594143195f50cfde78e15a8f94092c4bdb913a9b9b9"},
+    {file = "chromedriver_binary-133.0.6896.0.0.tar.gz", hash = "sha256:d2a1c9732a76f97330940b3cb3c2250ac6d04c4e5450eb4cdfd5de9950b3c90c"},
 ]
 
 [[package]]
@@ -1497,4 +1496,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "cab3938b0b260f4500c5f1d3dd23bd7878d0bd9ce66c22afeffe978bef1d4160"
+content-hash = "aa69f0846f17568cb6e29d6d30ea3ade053dcc71b40e8f7176768c3f4c5f0cf3"

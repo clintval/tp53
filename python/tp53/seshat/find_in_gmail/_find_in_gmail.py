@@ -156,7 +156,7 @@ class Message:
 class Gmail:
     """A client for interacting with Google's Gmail."""
 
-    cache: Path = Path(DEFAULT_CACHE_PATH).expanduser().absolute()
+    cache: Path = Path(DEFAULT_CACHE_PATH).expanduser().resolve().absolute()
 
     def __init__(self, auth: Credentials) -> None:
         self.auth: Credentials = auth
@@ -193,7 +193,7 @@ class Gmail:
         """Login to Gmail using a cached token if available, otherwise use JSON credentials."""
         auth: Credentials | None = None
         if credentials is not None:
-            credentials = Path(credentials).expanduser().absolute()
+            credentials = Path(credentials).expanduser().resolve().absolute()
         if not Gmail.cache.parent.exists():
             os.makedirs(Gmail.cache.parent)
             os.chmod(Gmail.cache.parent, 0o700)
@@ -353,6 +353,7 @@ def find_in_gmail(
     credentials: Path | None = None,
 ) -> None:
     """Wait for an email for Seshat given an annotated VCF file, then download the annotations."""
+    infile = infile.expanduser().resolve().absolute()
     gmail = (
         Gmail(Gmail.get_login_credentials())
         if credentials is None
@@ -383,7 +384,7 @@ def find_in_gmail(
     logger.info("Message contents are as follows:")
 
     for line in next(iter(message.html_parts())).all_text():
-        logger.info(f"  >>> {line}")
+        logger.info(f"  {line}")
 
     attachments = message.attachments()
 
