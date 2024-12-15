@@ -70,7 +70,7 @@ jobs:
   build-seshat-exe:
     name: build seshat executable
     needs: scala-tests
-    uses: "./.github/workflows/buil_seshat_exe.yml"
+    uses: "./.github/workflows/build_seshat_exe.yml"
 
   make-changelog:
     runs-on: ubuntu-latest
