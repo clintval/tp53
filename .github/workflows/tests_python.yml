@@ -1,4 +1,4 @@
-name: unit tests
+name: python tests
 
 on:
   push:
@@ -13,7 +13,11 @@ env:
 
 jobs:
   Tests:
+    name: Python tests with ${{ matrix.PYTHON_VERSION }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
     strategy:
       matrix:
         PYTHON_VERSION: ["3.11", "3.12", "3.13"]

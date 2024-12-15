@@ -7,7 +7,6 @@ from enum import auto
 from logging import Logger
 from pathlib import Path
 
-from chromedriver_py import binary_path
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver as RemoteWebDriver
@@ -62,9 +61,9 @@ def upload_vcf(
         url: The Seshat TP53 web server URL.
         wait_for: Seconds to wait for upload to occur before failure.
     """
-    vcf = str(Path(vcf).expanduser().absolute())
+    vcf = str(Path(vcf).expanduser().resolve().absolute())
 
-    service = webdriver.ChromeService(executable_path=binary_path)
+    service = webdriver.ChromeService()
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
 

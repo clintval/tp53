@@ -1,21 +1,62 @@
 # tp53
 
-[![PyPi Release](https://badge.fury.io/py/tp53.svg)](https://badge.fury.io/py/tp53)
-[![CI](https://github.com/clintval/tp53/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/clintval/tp53/actions/workflows/tests.yml?query=branch%3Amain)
+<!-- [![Install with Bioconda](https://img.shields.io/badge/Install%20with-bioconda-brightgreen.svg)](http://bioconda.github.io/recipes/seshat/README.html) -->
+<!-- [![Anaconda Version](https://anaconda.org/bioconda/seshat/badges/version.svg)](http://bioconda.github.io/recipes/seshat/README.html) -->
+[![Scala Tests](https://github.com/clintval/tp53/actions/workflows/tests_scala.yml/badge.svg?branch=main)](https://github.com/clintval/tp53/actions/workflows/tests_scala.yml?query=branch%3Amain)
+[![Python Tests](https://github.com/clintval/tp53/actions/workflows/tests_python.yml/badge.svg?branch=main)](https://github.com/clintval/tp53/actions/workflows/tests_python.yml?query=branch%3Amain)
+[![Language](https://img.shields.io/badge/language-scala-c22d40.svg)](https://www.scala-lang.org/)
+[![Java Version](https://img.shields.io/badge/java-11,17,21-c22d40.svg)](https://github.com/AdoptOpenJDK/homebrew-openjdk)
 [![Python Versions](https://img.shields.io/badge/python-3.11_|_3.12_|_3.13-blue)](https://github.com/clintval/typeline)
-[![basedpyright](https://img.shields.io/badge/basedpyright-checked-42b983)](https://docs.basedpyright.com/latest/)
-[![mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
-[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://docs.astral.sh/ruff/)
 
 Tools for programmatically annotating VCFs with the Seshat TP53 database.
 
+![Mount Shuksan](.github/img/cover.jpg)
+
 ## Installation
 
-The package can be installed with `pip`:
+Install with the Conda or Mamba package manager after setting your [Bioconda channels](https://bioconda.github.io/#usage):
 
 ```console
-pip install tp53
+❯ conda install seshat
+```
+
+## Quick Usage Example
+
+For a round-trip annotation of a VCF file, execute a command like:
+
+```bash
+❯ seshat round-trip \
+    --input "sample.library.vcf" \
+    --output "sample.library" \
+    --email "example@example.com"
+```
+```console
+15:23:53 INFO  SeshatUploadVcf - Executing command: python3 -m tp53.seshat.upload_vcf --input sample.library.vcf --assembly hg38 --email example@example.com --url http://vps338341.ovh.net/batch_analysis --wait-for 5
+15:23:54 INFO  SeshatUploadVcf - INFO:tp53.seshat.upload_vcf:Uploading 0 %...
+15:23:54 INFO  SeshatUploadVcf - INFO:tp53.seshat.upload_vcf:Uploading 60%...
+15:23:54 INFO  SeshatUploadVcf - INFO:tp53.seshat.upload_vcf:Uploading 73%...
+15:23:54 INFO  SeshatUploadVcf - INFO:tp53.seshat.upload_vcf:Upload complete!
+15:23:54 INFO  SeshatFindInGmail - Executing command: python3 -m tp53.seshat.find_in_gmail --input sample.library.vcf --output sample.library --newer-than 5 --wait-for 200
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Successfully logged into the Gmail service.
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Querying for a VCF named: sample.library.vcf
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Searching Gmail messages with: sample.library.vcf from:support@genevia.fi newer_than:5h subject:"Results of batch analysis"
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Message found with the following metadata: {'id': '193cbfdcdb5bc87c', 'threadId': '193cbfdcdb5bc87c'}
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Message contents are as follows:
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Results of batch analysis
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Analyzed batch file:
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  sample.library.vcf
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Time taken to run the analysis:
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  0 minutes 10 seconds
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Summary:
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  The input file contained
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:          23 mutations out of which
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:          23 were TP53 mutations.
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Writing attachment to ZIP archive: sample.library.vcf.seshat.zip
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Extracting ZIP archive: sample.library.vcf.seshat.zip
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Output file renamed to: sample.library.seshat.short-20241215_212333_875215.tsv
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Output file renamed to: sample.library.seshat.long-20241215_212333_969299.tsv
+15:23:55 INFO  SeshatMerge - Starting to zip annotations and VCF variants.
+15:23:56 INFO  SeshatMerge - Successfully annotated variant calls.
 ```
 
 ## Upload a VCF to Seshat
@@ -23,27 +64,20 @@ pip install tp53
 Upload a VCF to the [Seshat TP53 annotation server](http://vps338341.ovh.net/) using a headless browser.
 
 ```bash
-❯ python -m tp53.seshat.upload_vcf \
+❯ seshat upload-vcf \
     --input "sample.library.vcf" \
     --email "example@gmail.com"
 ```
 ```console
-INFO:tp53.seshat.upload_vcf:Uploading 0 %...
-INFO:tp53.seshat.upload_vcf:Uploading 53%...
-INFO:tp53.seshat.upload_vcf:Uploading 53%...
-INFO:tp53.seshat.upload_vcf:Uploading 60%...
-INFO:tp53.seshat.upload_vcf:Uploading 60%...
-INFO:tp53.seshat.upload_vcf:Uploading 66%...
-INFO:tp53.seshat.upload_vcf:Uploading 66%...
-INFO:tp53.seshat.upload_vcf:Uploading 80%...
-INFO:tp53.seshat.upload_vcf:Uploading 80%...
-INFO:tp53.seshat.upload_vcf:Upload complete!
+16:11:02 INFO  SeshatUploadVcf - Executing command: python3 -m tp53.seshat.upload_vcf --input sample.library.vcf --assembly hg38 --email example@example.com --url http://vps338341.ovh.net/batch_analysis --wait-for 200
+16:11:03 INFO  SeshatUploadVcf - INFO:tp53.seshat.upload_vcf:Uploading 0 %...
+16:11:03 INFO  SeshatUploadVcf - INFO:tp53.seshat.upload_vcf:Uploading 60%...
+16:11:03 INFO  SeshatUploadVcf - INFO:tp53.seshat.upload_vcf:Uploading 66%...
+16:11:03 INFO  SeshatUploadVcf - INFO:tp53.seshat.upload_vcf:Upload complete!
 ```
 
 This tool is used to programmatically configure and upload batch variants in VCF format to the Seshat annotation server.
 The tool works by building a headless Chrome browser instance and then interacting with the Seshat website directly through simulated key presses and mouse clicks.
-Unfortunately, Seshat does not provide a native programmatic API and one could not be reverse engineered.
-Seshat also utilizes custom JavaScript in their form processing, so a lightweight approach of simply interacting with the HTML form elements was also not possible.
 
 ###### VCF Input Requirements
 
@@ -65,8 +99,6 @@ In lieu of usage terms, we strongly encourage all users of this script to respec
 - **Minimize Load**: Limit the rate of requests to the server
 - **Minimize Connections**: Limit the number of concurrent requests
 
-If you need to batch process dozens, or hundreds, of VCF callsets, you may consider improving this underlying Python script to randomize the user agent and IP address of your headless browser session to prevent from being labelled as a bot.
-
 ###### Environment Setup
 
 This script relies on Google Chrome:
@@ -82,30 +114,30 @@ Distributions of MacOS may require you to authenticate the Chrome driver ([link]
 Download [Seshat](http://vps338341.ovh.net/) VCF annotations by awaiting a server-generated email.
 
 ```bash
-❯ python -m tp53.seshat.find_in_gmail \
+❯ seshat find-in-gmail \
     --input "sample.library.vcf" \
     --output "sample.library" \
     --credentials "~/.secrets/credentials.json"
 ```
 ```console
-INFO:tp53.seshat.find_in_gmail:Successfully logged into the Gmail service.
-INFO:tp53.seshat.find_in_gmail:Querying for a VCF named: sample.library.vcf
-INFO:tp53.seshat.find_in_gmail:Searching Gmail messages with: sample.library.vcf from:support@genevia.fi newer_than:5h subject:"Results of batch analysis"
-INFO:tp53.seshat.find_in_gmail:Message found with the following metadata: {'id': '193c310d2714b389', 'threadId': '193c30b7244e2662'}
-INFO:tp53.seshat.find_in_gmail:Message contents are as follows:
-INFO:tp53.seshat.find_in_gmail:  Results of batch analysis
-INFO:tp53.seshat.find_in_gmail:  Analyzed batch file:
-INFO:tp53.seshat.find_in_gmail:  sample.library.vcf
-INFO:tp53.seshat.find_in_gmail:  Time taken to run the analysis:
-INFO:tp53.seshat.find_in_gmail:  0 minutes 10 seconds
-INFO:tp53.seshat.find_in_gmail:  Summary:
-INFO:tp53.seshat.find_in_gmail:  The input file contained
-INFO:tp53.seshat.find_in_gmail:    23 mutations out of which
-INFO:tp53.seshat.find_in_gmail:    23 were TP53 mutations.
-INFO:tp53.seshat.find_in_gmail:Writing attachment to ZIP archive: sample.library.vcf.seshat.zip
-INFO:tp53.seshat.find_in_gmail:Extracting ZIP archive: sample.library.vcf.seshat.zip
-INFO:tp53.seshat.find_in_gmail:Output file renamed to: sample.library.seshat.short-20241214_034753_129732.tsv
-INFO:tp53.seshat.find_in_gmail:Output file renamed to: sample.library.seshat.long-20241214_034753_217420.tsv
+16:14:06 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Successfully logged into the Gmail service.
+16:14:06 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Querying for a VCF named: sample.library.vcf
+16:14:06 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Searching Gmail messages with: sample.library.vcf from:support@genevia.fi newer_than:10h subject:"Results of batch analysis"
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Message found with the following metadata: {'id': '193cc295aa6ae27d', 'threadId': '193cc295aa6ae27d'}
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Message contents are as follows:
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Results of batch analysis
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Analyzed batch file:
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  sample.library.vcf
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Time taken to run the analysis:
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  0 minutes 10 seconds
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Summary:
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  The input file contained
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:          23 mutations out of which
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:          23 were TP53 mutations.
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Writing attachment to ZIP archive: sample.library.vcf.seshat.zip
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Extracting ZIP archive: sample.library.vcf.seshat.zip
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Output file renamed to: sample.library.seshat.short-20241215_221114_586973.tsv
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Output file renamed to: sample.library.seshat.long-20241215_221114_675170.tsv
 ```
 
 This tool is used to programmatically wait for, and retrieve, a batch results email from the Seshat TP53 annotation server.
@@ -181,9 +213,25 @@ A typical Google developer's OAuth file is of the format:
 
 If Seshat fails to annotate the VCF file but still emails the user a response, then this tool will emit the email body to standard error and exit with a non-zero status.
 
+## Merge Annotations into a VCF
+
+Merge annotations into the `INFO` fields of the VCF.
+
+```bash
+❯ seshat merge \
+    --input "sample.library.vcf" \
+    --annotations "sample.library.seshat.long-20241215_221114_675170.tsv" \
+    --output "sample.library.seshat.annotated.vcf"
+```
+
+```console
+16:16:34 INFO  SeshatMerge - Starting to zip annotations and VCF variants.
+16:16:34 INFO  SeshatMerge - Successfully annotated variant calls.
+```
+
 ## Development and Testing
 
-See the [contributing guide](https://github.com/clintval/tp53/blob/main/CONTRIBUTING.md) for more information.
+See the [contributing guide](./CONTRIBUTING.md) for more information.
 
 ## References
 

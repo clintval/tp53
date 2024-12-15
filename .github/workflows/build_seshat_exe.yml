@@ -1,0 +1,47 @@
+name: build seshat executable
+
+on:
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  build-wheels:
+    name: Build Seshat executable
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scala
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - name: Cache for Scala Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.mill/download
+            ~/.m2/repository
+            ~/.cache/coursier
+          key: ${{ runner.os }}-java-mill-21-${{ hashFiles('**/build.sc') }}
+          restore-keys: ${{ runner.os }}-java-mill-
+
+      - name: Compile Scala Code
+        run: |
+          ./mill --no-server clean
+          ./mill --no-server --disable-ticker seshat.compile
+
+      - name: Build executable file
+        run: ./mill --no-server --disable-ticker seshat.executable
+
+      - name: Upload wheels
+        uses: actions/upload-artifact@v4
+        with:
+          name: seshat
+          path: ./scala/bin/seshat
+          if-no-files-found: error

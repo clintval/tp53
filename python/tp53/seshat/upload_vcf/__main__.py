@@ -4,11 +4,7 @@ Upload a VCF to the Seshat TP53 annotation server using a headless browser.
 This tool is used to programmatically configure and upload batch variants in VCF
 format to the Seshat annotation server. The tool works by building a headless
 Chrome browser instance and then interacting with the Seshat website directly
-through simulated key presses and mouse clicks. Unfortunately, Seshat does not
-provide a native programmatic API and one could not be reverse engineered.
-Seshat also utilizes custom JavaScript in their form processing, so a
-lightweight approach of simply interacting with the HTML form elements was
-also not possible.
+through simulated key presses and mouse clicks.
 
 #### VCF Input Requirements
 
@@ -29,11 +25,6 @@ resource by adhering to the following best practice:
 
   - Minimize Load: Limit the rate of requests to the server
   - Minimize Connections: Limit the number of concurrent requests
-
-If you need to batch process dozens, or hundreds, of VCF callsets, you may
-consider improving this underlying Python script to randomize the user agent and
-IP address of your headless browser session to prevent from being labelled as a
-bot.
 
 #### Environment Setup
 

@@ -10,6 +10,9 @@ env:
 jobs:
   on-main-branch-check:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
     outputs:
       on_main: ${{ steps.contains_tag.outputs.retval }}
     steps:
@@ -23,53 +26,27 @@ jobs:
           reference: "main"
           tag: "${{ github.ref_name }}"
 
-  tests:
-    name: tests
+  python-tests:
+    name: python-tests
     needs: on-main-branch-check
     if: ${{ needs.on-main-branch-check.outputs.on_main == 'true' }}
-    uses: "./.github/workflows/tests.yml"
+    uses: "./.github/workflows/tests_python.yml"
+
+  scala-tests:
+    name: scala-tests
+    needs: on-main-branch-check
+    if: ${{ needs.on-main-branch-check.outputs.on_main == 'true' }}
+    uses: "./.github/workflows/tests_scala.yml"
 
   build-wheels:
     name: build wheels
-    needs: tests
-    uses: "./.github/workflows/wheels.yml"
+    needs: python-tests
+    uses: "./.github/workflows/build_wheels.yml"
 
   build-sdist:
     name: build source distribution
-    needs: tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          submodules: true
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.12
-
-      - name: Install poetry
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install poetry==${{env.POETRY_VERSION}}
-
-      - name: Configure poetry
-        shell: bash
-        run: poetry config virtualenvs.in-project true
-
-      - name: Install dependencies
-        run: poetry install --no-interaction --no-root --without=dev
-
-      - name: Install project
-        run: poetry install --no-interaction --without=dev
-
-      - name: Build package
-        run: poetry build --format=sdist
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: tp53-sdist
-          path: dist/*.tar.gz
+    needs: python-tests
+    uses: "./.github/workflows/build_sdist.yml"
 
   publish-to-pypi:
     runs-on: ubuntu-latest
@@ -90,6 +67,11 @@ jobs:
           skip-existing: true
           verbose: true
 
+  build-seshat-exe:
+    name: build seshat executable
+    needs: scala-tests
+    uses: "./.github/workflows/buil_seshat_exe.yml"
+
   make-changelog:
     runs-on: ubuntu-latest
     needs: publish-to-pypi
@@ -106,7 +88,7 @@ jobs:
         uses: orhun/git-cliff-action@v3
         id: git-cliff
         with:
-          config: pyproject.toml
+          config: ./python/pyproject.toml
           args: --latest --verbose
         env:
           GITHUB_REPO: ${{ github.repository }}
@@ -117,8 +99,13 @@ jobs:
     permissions:
       contents: write
       pull-requests: read
-    needs: make-changelog
+    needs: [build-seshat-exe, make-changelog]
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: "seshat"
+          merge-multiple: true
+  
       - name: Create Draft Release
         id: create_release
         uses: softprops/action-gh-release@v2
@@ -127,3 +114,4 @@ jobs:
           body: ${{ needs.make-changelog.outputs.release_body }}
           draft: false
           prerelease: false
+          files: "seshat"

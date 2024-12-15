@@ -1,7 +1,7 @@
 [tool.poetry]
 name          = "tp53"
 version       = "0.6.0"
-description   = "Tools for programmatically annotating VCFs with the Seshat TP53 database."
+description   = "Python tools for programmatically annotating VCFs with the Seshat TP53 database."
 readme        = "README.md"
 authors       = ["Clint Valentine <valentine.clint@gmail.com>"]
 license       = "MIT"
@@ -31,7 +31,7 @@ classifiers   = [
 [tool.poetry.dependencies]
 python                   = "^3.11"
 beautifulsoup4           = "~4.12"
-chromedriver-py          = "*"
+chromedriver-binary      = "*"
 google-api-python-client = "~2.151"
 google-auth-httplib2     = "~0.2"
 google-auth-oauthlib     = "~1.2.1"

@@ -1,0 +1,6 @@
+.idea/
+.java-version
+.metals/
+**/*.iml
+bin/
+out/
