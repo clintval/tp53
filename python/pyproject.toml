@@ -5,10 +5,10 @@ description   = "Python tools for programmatically annotating VCFs with the Sesh
 readme        = "README.md"
 authors       = ["Clint Valentine <valentine.clint@gmail.com>"]
 license       = "MIT"
-include       = ["LICENSE"]
-homepage      = "https://github.com/clintval/tp53"
+include       = ["CONTRIBUTING.md", "LICENSE"]
+homepage      = "https://github.com/clintval/tp53/blob/main/python"
 repository    = "https://github.com/clintval/tp53"
-documentation = "https://github.com/clintval/tp53"
+documentation = "https://github.com/clintval/tp53/blob/main/python/README.md"
 classifiers   = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console",
