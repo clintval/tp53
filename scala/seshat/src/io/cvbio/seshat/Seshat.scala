@@ -94,7 +94,7 @@ object Seshat {
     verify()
   }
 
-  /** Run the tool neodisambiguate. */
+  /** Run the tool seshat. */
   def main(args: Array[String]): Unit = {
     import com.fulcrumgenomics.util.Io
 
