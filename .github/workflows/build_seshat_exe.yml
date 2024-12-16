@@ -43,5 +43,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: seshat
-          path: ./bin/seshat
+          path: ./scala/bin/seshat
           if-no-files-found: error
