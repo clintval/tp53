@@ -1,7 +1,7 @@
 # tp53 & seshat
 
 [![Install with Bioconda](https://img.shields.io/badge/Install%20with-bioconda-brightgreen.svg)](http://bioconda.github.io/recipes/seshat/README.html)
-[![Anaconda Version](https://anaconda.org/bioconda/seshat/badges/version.svg)](http://bioconda.github.io/recipes/seshat/README.html)
+[![Anaconda Version](https://anaconda.org/bioconda/seshat/badges/version.svg)](https://anaconda.org/bioconda/seshat)
 [![Language](https://img.shields.io/badge/language-scala-c22d40.svg)](https://www.scala-lang.org/)
 [![Java Version](https://img.shields.io/badge/java-11,17,21-c22d40.svg)](https://github.com/AdoptOpenJDK/homebrew-openjdk)
 [![Python Versions](https://img.shields.io/badge/python-3.11_|_3.12_|_3.13-blue)](https://github.com/clintval/typeline)
