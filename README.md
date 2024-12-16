@@ -15,7 +15,7 @@ Tools for programmatically annotating VCFs with the [Seshat TP53 database](http:
 Install with the Conda or Mamba package manager after setting your [Bioconda channels](https://bioconda.github.io/#usage):
 
 ```console
-❯ conda install seshat
+conda install seshat
 ```
 
 ## Quick Usage Example
