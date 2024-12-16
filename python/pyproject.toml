@@ -1,6 +1,6 @@
 [tool.poetry]
 name          = "tp53"
-version       = "0.10.0"
+version       = "0.12.0"
 description   = "Python tools for programmatically annotating VCFs with the Seshat TP53 database."
 readme        = "README.md"
 authors       = ["Clint Valentine <valentine.clint@gmail.com>"]

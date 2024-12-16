@@ -85,7 +85,7 @@ jobs:
         uses: orhun/git-cliff-action@v3
         id: git-cliff
         with:
-          config: python/pyproject.toml
+          config: ./python/pyproject.toml
           args: --latest --verbose
         env:
           GITHUB_REPO: ${{ github.repository }}
