@@ -47,8 +47,8 @@ For round-trip Seshat annotation of a VCF file, execute a command like:
 15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  0 minutes 10 seconds
 15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Summary:
 15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  The input file contained
-15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:          23 mutations out of which
-15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:          23 were TP53 mutations.
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:      23 mutations out of which
+15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:      23 were TP53 mutations.
 15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Writing attachment to ZIP archive: sample.library.vcf.seshat.zip
 15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Extracting ZIP archive: sample.library.vcf.seshat.zip
 15:23:55 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Output file renamed to: sample.library.seshat.short-20241215_212333_875215.tsv
@@ -130,8 +130,8 @@ Download Seshat VCF annotations by awaiting a server-generated email.
 16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  0 minutes 10 seconds
 16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  Summary:
 16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:  The input file contained
-16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:          23 mutations out of which
-16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:          23 were TP53 mutations.
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:      23 mutations out of which
+16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:      23 were TP53 mutations.
 16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Writing attachment to ZIP archive: sample.library.vcf.seshat.zip
 16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Extracting ZIP archive: sample.library.vcf.seshat.zip
 16:14:07 INFO  SeshatFindInGmail - INFO:tp53.seshat.find_in_gmail:Output file renamed to: sample.library.seshat.short-20241215_221114_586973.tsv
