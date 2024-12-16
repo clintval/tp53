@@ -1,4 +1,4 @@
-# Python Tool
+# Python Tools
 
 [![Python Tests](https://github.com/clintval/tp53/actions/workflows/tests_python.yml/badge.svg?branch=main)](https://github.com/clintval/tp53/actions/workflows/tests_python.yml?query=branch%3Amain)
 [![PyPi Release](https://badge.fury.io/py/tp53.svg)](https://badge.fury.io/py/tp53)
@@ -130,7 +130,7 @@ The following rules are used to find annotation files:
 
 ###### Gmail Authentication
 
-After installing all Python dependencies, you must create a Google developer's OAuth file.
+You must create a Google developer's OAuth file.
 First-time 2FA may be required depending on the configuration of your Gmail service.
 If 2FA is required, then this script will block until you acknowledge your 2FA prompt.
 A 2FA prompt is often delivered through an auto-opening web browser.
@@ -179,7 +179,7 @@ If Seshat fails to annotate the VCF file but still emails the user a response, t
 
 ## Development and Testing
 
-See the [contributing guide](./CONTRIBUTING.md) for more information.
+See the [contributing guide](https://github.com/clintval/tp53/blob/main/python/CONTRIBUTING.md) for more information.
 
 ## References
 
