@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 from datetime import datetime
 from datetime import timedelta
@@ -62,6 +63,9 @@ def upload_vcf(
         wait_for: Seconds to wait for upload to occur before failure.
     """
     vcf = str(Path(vcf).expanduser().resolve().absolute())
+
+    if not os.path.exists(vcf):
+        raise FileNotFoundError(f"Could not find VCF at path: {vcf}")
 
     service = webdriver.ChromeService()
     options = webdriver.ChromeOptions()
