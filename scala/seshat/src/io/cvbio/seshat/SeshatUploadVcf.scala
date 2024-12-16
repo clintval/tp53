@@ -51,7 +51,7 @@ class SeshatUploadVcf(
     )
   }
 
-  /** The argument list for the [[SeshatUpload]] script. */
+  /** The argument list for the [[SeshatUploadVcf]] script. */
   private[seshat] def scriptArgs(input: PathToVcf): Seq[String] = {
     val buffer = new ListBuffer[String]()
     buffer.addAll(Seq("--input", input.toString))
@@ -112,7 +112,7 @@ object SeshatUploadVcf {
   object SeshatAssembly extends Enum[SeshatAssembly] {
 
     /** All values of this enumeration. */
-    val values = findValues
+    val values: IndexedSeq[SeshatAssembly] = findValues
 
     /** The assembly hg17. */
     case object Hg17 extends SeshatAssembly

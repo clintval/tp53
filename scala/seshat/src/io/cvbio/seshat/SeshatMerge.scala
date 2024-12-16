@@ -65,7 +65,7 @@ object SeshatMerge {
   val Delimiter: Char = '\t'
 
   /** Ignore these invariant fields in the annotation file, as they are copy-pasted from the source VCF. */
-  val FieldsToIgnore: Set[String] = {
+  private[seshat] val FieldsToIgnore: Set[String] = {
     Set("Sample", "CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO", "FORMAT")
   }
 

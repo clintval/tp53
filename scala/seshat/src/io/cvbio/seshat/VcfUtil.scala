@@ -29,23 +29,23 @@ object VcfUtil {
   )
 
   /** Some characters have special meanings in VCF files.  When they appear in strings for use as an INFO/FORMAT key
-   * or value they must be encoded. These functions will perform this encoding/decoding for all characters as outlined
-   * in VCF 4.3 §1.2. This function is not to be used on a string representation of a list of INFO/FORMAT values.
-   * URL encoding is similar, but conflates Space (" ") and Plus ("+").
-   * Spaces are allowed in VCF v4.3, but this isn't yet supported by HTSJDK so they are also encoded.
-   *
-   * In the case of encoding a list of INFO/FORMAT values encoded as a string, you must first split the string on the
-   * comma-delimiter, encode, and then re-join the string:
-   *
-   * {{{
-   *     "1.0 2.0,3.0 4.0,5.0".split(',').map(VcfUtil.fieldEncode).mkString(",")
-   * }}}
-   *
-   * Which will return:
-   *
-   * {{{
-   *     "1.0%202.0,3.0%204.0,5.0"
-   * }}}
-   */
+    * or value they must be encoded. These functions will perform this encoding/decoding for all characters as outlined
+    * in VCF 4.3 §1.2. This function is not to be used on a string representation of a list of INFO/FORMAT values.
+    * URL encoding is similar, but conflates Space (" ") and Plus ("+").
+    * Spaces are allowed in VCF v4.3, but this isn't yet supported by HTSJDK so they are also encoded.
+    *
+    * In the case of encoding a list of INFO/FORMAT values encoded as a string, you must first split the string on the
+    * comma-delimiter, encode, and then re-join the string:
+    *
+    * {{{
+    *     "1.0 2.0,3.0 4.0,5.0".split(',').map(VcfUtil.fieldEncode).mkString(",")
+    * }}}
+    *
+    * Which will return:
+    *
+    * {{{
+    *     "1.0%202.0,3.0%204.0,5.0"
+    * }}}
+    */
   private[seshat] def fieldEncode(string: String): String = string.map(c => SpecialCharCodec.getOrElse(c, c.toString)).mkString
 }

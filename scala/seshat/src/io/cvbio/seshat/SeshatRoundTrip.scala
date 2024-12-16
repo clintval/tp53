@@ -66,7 +66,7 @@ object SeshatRoundTrip {
   val SeshatInfix: String = ".seshat"
 
   /** Find a Seshat annotation file in a directory, by type. Annotation files have a date-time-stamp in their filename. */
-  def findAnnotations(dir: DirPath, kind: SeshatAnnotationType): Option[FilePath] = {
+  private[seshat] def findAnnotations(dir: DirPath, kind: SeshatAnnotationType): Option[FilePath] = {
     val pattern: Regex = s".*${kind.entryName}-\\d{8}_\\d{6}_\\d{6}\\.tsv".r
     Files.walk(dir, 1).iterator.find(path => pattern.matches(PathUtil.basename(path, trimExt = false)))
   }
@@ -78,7 +78,7 @@ object SeshatRoundTrip {
   object SeshatAnnotationType extends Enum[SeshatAnnotationType] {
 
     /** All values of this enumeration. */
-    val values = findValues
+    val values: IndexedSeq[SeshatAnnotationType] = findValues
 
     /** The short-form annotations. */
     case object Short extends SeshatAnnotationType

@@ -8,8 +8,7 @@ import com.fulcrumgenomics.util.Io.makeTempFile
 import com.fulcrumgenomics.vcf.api.{AlleleSet, Genotype, Variant, VcfSource}
 import io.cvbio.UnitSpec
 import io.cvbio.seshat.SeshatMerge._
-import io.cvbio.seshat.VcfUtil
-import io.cvbio.seshat.VcfUtil.{VcfExtension, TextExtension}
+import io.cvbio.seshat.VcfUtil.{TextExtension, VcfExtension}
 
 import scala.util.Properties.lineSeparator
 
