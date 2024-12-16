@@ -6,7 +6,7 @@
 [![Java Version](https://img.shields.io/badge/java-11,17,21-c22d40.svg)](https://github.com/AdoptOpenJDK/homebrew-openjdk)
 [![Python Versions](https://img.shields.io/badge/python-3.11_|_3.12_|_3.13-blue)](https://github.com/clintval/typeline)
 
-Tools for programmatically annotating VCFs with the Seshat TP53 database.
+Tools for programmatically annotating VCFs with the [Seshat TP53 database](http://vps338341.ovh.net/).
 
 ![Mount Shuksan](.github/img/cover.jpg)
 
@@ -20,7 +20,7 @@ Install with the Conda or Mamba package manager after setting your [Bioconda cha
 
 ## Quick Usage Example
 
-For a round-trip annotation of a VCF file, execute a command like:
+For round-trip Seshat annotation of a VCF file, execute a command like:
 
 ```bash
 ❯ seshat round-trip \
@@ -59,7 +59,7 @@ For a round-trip annotation of a VCF file, execute a command like:
 
 ## Upload a VCF to Seshat
 
-Upload a VCF to the [Seshat TP53 annotation server](http://vps338341.ovh.net/) using a headless browser.
+Upload a VCF to the Seshat annotation webserver using a headless browser.
 
 ```bash
 ❯ seshat upload-vcf \
@@ -109,7 +109,7 @@ Distributions of MacOS may require you to authenticate the Chrome driver ([link]
 
 ## Download a Seshat Annotation from Gmail
 
-Download [Seshat](http://vps338341.ovh.net/) VCF annotations by awaiting a server-generated email.
+Download Seshat VCF annotations by awaiting a server-generated email.
 
 ```bash
 ❯ seshat find-in-gmail \
@@ -213,7 +213,7 @@ If Seshat fails to annotate the VCF file but still emails the user a response, t
 
 ## Merge Annotations into a VCF
 
-Merge annotations into the `INFO` fields of the VCF.
+Merge Seshat annotations into the `INFO` fields of the VCF.
 
 ```bash
 ❯ seshat merge \
