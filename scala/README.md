@@ -1,4 +1,4 @@
-# Scala Tools
+# tp53 & seshat scala tools
 
 [![Scala Tests](https://github.com/clintval/tp53/actions/workflows/tests_scala.yml/badge.svg?branch=main)](https://github.com/clintval/tp53/actions/workflows/tests_scala.yml?query=branch%3Amain)
 [![Language](https://img.shields.io/badge/language-scala-c22d40.svg)](https://www.scala-lang.org/)

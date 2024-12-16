@@ -1,4 +1,4 @@
-# Python Tools
+# tp53 & seshat python tools
 
 [![Python Tests](https://github.com/clintval/tp53/actions/workflows/tests_python.yml/badge.svg?branch=main)](https://github.com/clintval/tp53/actions/workflows/tests_python.yml?query=branch%3Amain)
 [![PyPi Release](https://badge.fury.io/py/tp53.svg)](https://badge.fury.io/py/tp53)
