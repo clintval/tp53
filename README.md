@@ -1,7 +1,7 @@
-# tp53
+# tp53 & seshat
 
-<!-- [![Install with Bioconda](https://img.shields.io/badge/Install%20with-bioconda-brightgreen.svg)](http://bioconda.github.io/recipes/seshat/README.html) -->
-<!-- [![Anaconda Version](https://anaconda.org/bioconda/seshat/badges/version.svg)](http://bioconda.github.io/recipes/seshat/README.html) -->
+[![Install with Bioconda](https://img.shields.io/badge/Install%20with-bioconda-brightgreen.svg)](http://bioconda.github.io/recipes/seshat/README.html)
+[![Anaconda Version](https://anaconda.org/bioconda/seshat/badges/version.svg)](http://bioconda.github.io/recipes/seshat/README.html)
 [![Language](https://img.shields.io/badge/language-scala-c22d40.svg)](https://www.scala-lang.org/)
 [![Java Version](https://img.shields.io/badge/java-11,17,21-c22d40.svg)](https://github.com/AdoptOpenJDK/homebrew-openjdk)
 [![Python Versions](https://img.shields.io/badge/python-3.11_|_3.12_|_3.13-blue)](https://github.com/clintval/typeline)
@@ -56,6 +56,8 @@ For round-trip Seshat annotation of a VCF file, execute a command like:
 15:23:55 INFO  SeshatMerge - Starting to zip annotations and VCF variants.
 15:23:56 INFO  SeshatMerge - Successfully annotated variant calls.
 ```
+
+See [Upload a VCF to Seshat](#upload-a-vcf-to-seshat) and [Download a Seshat Annotation from Gmail](#download-a-seshat-annotation-from-gmail) for pre-requisite setup.
 
 ## Upload a VCF to Seshat
 
@@ -164,7 +166,7 @@ The following rules are used to find annotation files:
 
 ###### Gmail Authentication
 
-After installing all Python dependencies, you must create a Google developer's OAuth file.
+You must create a Google developer's OAuth file.
 First-time 2FA may be required depending on the configuration of your Gmail service.
 If 2FA is required, then this script will block until you acknowledge your 2FA prompt.
 A 2FA prompt is often delivered through an auto-opening web browser.

@@ -38,11 +38,11 @@ The following rules are used to find annotation files:
 
 #### Gmail Authentication
 
-After installing all Python dependencies, you must create a Google developer's
-OAuth file. First-time 2FA may be required depending on the configuration of
-your Gmail service. If 2FA is required, then this script will block until you
-acknowledge your 2FA prompt. A 2FA prompt is often delivered through an
-auto-opening web browser.
+You must create a Google developer's OAuth file.
+First-time 2FA may be required depending on the configuration of your Gmail
+service. If 2FA is required, then this script will block until you acknowledge
+your 2FA prompt. A 2FA prompt is often delivered through an auto-opening web
+browser.
 
 To create a Google developer's OAuth file, navigate to the following URL and
 follow the instructions.
